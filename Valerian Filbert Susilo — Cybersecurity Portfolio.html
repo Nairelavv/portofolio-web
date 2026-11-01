@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Valerian Filbert Susilo — Cybersecurity Portfolio</title>
+<style>
+:root{--bg:#f3f7f5;--surface:#fff;--text:#0d1a15;--muted:#51645b;--accent:#087f52;--accent2:#c2185b;--line:#d5e0db;--glow:rgba(8,127,82,.25);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#060b09;--surface:#0e1713;--text:#e4f3ec;--muted:#8aa398;--accent:#2ee59d;--accent2:#ff4d8d;--line:#1b2b24;--glow:rgba(46,229,157,.25);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#060b09;--surface:#0e1713;--text:#e4f3ec;--muted:#8aa398;--accent:#2ee59d;--accent2:#ff4d8d;--line:#1b2b24;--glow:rgba(46,229,157,.25);color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:calc(60px + env(safe-area-inset-top,0px))}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:hidden}
+.mono{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+#rain{position:fixed;inset:0;width:100%;height:100%;z-index:0;opacity:.35;pointer-events:none}
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:20}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:16px;align-items:center;height:56px;overflow-x:auto;white-space:nowrap}
+nav b{color:var(--accent);margin-right:auto}
+nav a{color:var(--muted);text-decoration:none;font-size:14px;transition:.2s}
+nav a:hover{color:var(--accent)}
+#theme{background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:4px 9px;cursor:pointer;font-size:15px}
+header{padding:80px 0 56px}
+.tag{color:var(--accent);font-size:14px}
+h1{font-size:clamp(36px,8vw,68px);line-height:1.05;margin:12px 0;letter-spacing:-.02em}
+h1 span{background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent));background-size:200% 100%;animation:sh 5s linear infinite;-webkit-background-clip:text;background-clip:text;color:transparent}@keyframes sh{to{background-position:200% 0}}
+.role{font-size:clamp(17px,3vw,22px);min-height:1.6em;color:var(--muted)}
+.role i{display:inline-block;width:9px;height:1.1em;background:var(--accent);vertical-align:-3px;margin-left:3px;animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.btn{padding:11px 20px;border-radius:9px;border:1px solid var(--accent);background:var(--accent);color:var(--bg);text-decoration:none;font-weight:600;cursor:pointer;font-size:15px;font-family:inherit;transition:.2s}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn:hover{box-shadow:0 0 22px var(--glow);transform:translateY(-2px)}
+.term{margin-top:40px;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:0 0 40px var(--glow);overflow:hidden}
+.term-h{display:flex;gap:6px;padding:10px 14px;border-bottom:1px solid var(--line);align-items:center;color:var(--muted);font-size:12px}
+.term-h s{width:10px;height:10px;border-radius:50%;background:var(--accent2);text-decoration:none}.term-h s:nth-child(2){background:#f5b700}.term-h s:nth-child(3){background:var(--accent)}
+#out{height:230px;overflow-y:auto;padding:12px 14px;font-size:13.5px;line-height:1.55;white-space:pre-wrap}
+#out .c{color:var(--accent)}#out .e{color:var(--accent2)}
+.in{display:flex;gap:8px;padding:10px 14px;border-top:1px solid var(--line);font-size:14px}
+.in span{color:var(--accent)}
+#cmd{flex:1;background:none;border:0;outline:0;color:var(--text);font:inherit;min-width:0}
+.hint{color:var(--muted);font-size:12px;padding:0 14px 10px}
+.hint button{background:none;border:1px solid var(--line);color:var(--muted);border-radius:6px;font:inherit;margin-right:6px;padding:1px 7px;cursor:pointer}
+.hint button:hover{color:var(--accent);border-color:var(--accent)}
+section{padding:56px 0}
+h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+h2+p.sub{font-size:clamp(22px,4vw,30px);font-weight:700;margin:0 0 26px;line-height:1.25}
+.reveal{opacity:0;transform:translateY(24px);transition:.7s}.reveal.on{opacity:1;transform:none}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;transition:.25s}
+.card:hover{border-color:var(--accent);box-shadow:0 0 26px var(--glow);transform:perspective(700px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-3px)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.stat{font-size:38px;font-weight:800;color:var(--accent)}.lbl{color:var(--muted);font-size:14px}
+.tl{border-left:2px solid var(--line);margin-left:8px;padding-left:24px}
+.tl .card{margin-bottom:16px;position:relative}
+.tl .card::before{content:"";position:absolute;left:-33px;top:26px;width:14px;height:14px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--bg),0 0 14px var(--accent)}
+.card h3{margin:0;font-size:18px}.meta{color:var(--muted);font-size:13px;margin:2px 0 8px}
+.card ul{margin:0;padding-left:18px;color:var(--muted)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.tab{background:none;border:1px solid var(--line);color:var(--muted);border-radius:99px;padding:5px 14px;cursor:pointer;font:inherit;font-size:14px}
+.tab.a{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.sk{margin-bottom:14px}.sk.hide{display:none}
+.sk div{display:flex;justify-content:space-between;font-size:14px}
+.trk{height:7px;background:var(--line);border-radius:9px;overflow:hidden;margin-top:5px}
+.trk i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:9px;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.proj{cursor:pointer}
+.proj .more{max-height:0;overflow:hidden;transition:max-height .4s;color:var(--muted);font-size:14px}
+.proj.open .more{max-height:200px;margin-top:10px}
+.proj .arr{float:right;color:var(--accent);transition:.3s}.proj.open .arr{transform:rotate(90deg)}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.chip{padding:2px 10px;border:1px solid var(--line);border-radius:99px;font-size:12px;color:var(--muted)}
+.contact{text-align:center}
+footer{padding:28px 0 44px;color:var(--muted);font-size:13px;text-align:center;border-top:1px solid var(--line)}
+.toast{position:fixed;bottom:calc(24px + env(safe-area-inset-bottom,0px));left:50%;transform:translate(-50%,80px);background:var(--accent);color:var(--bg);padding:10px 18px;border-radius:9px;font-weight:600;transition:.3s;z-index:30}.toast.on{transform:translate(-50%,0)}
+#spot{position:fixed;left:0;top:0;width:520px;height:520px;margin:-260px 0 0 -260px;background:radial-gradient(circle,var(--glow),transparent 65%);pointer-events:none;z-index:0;transition:transform .12s ease-out}
+#pals{display:flex;gap:7px;align-items:center}.dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);cursor:pointer;padding:0;transition:.2s}.dot.a{border-color:var(--text);transform:scale(1.25)}
+.sp{position:fixed;width:6px;height:6px;border-radius:50%;background:var(--accent);pointer-events:none;z-index:40}
+.field{width:100%;margin-top:12px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;color:var(--text);font-size:15px;outline:0}.field:focus{border-color:var(--accent);box-shadow:0 0 14px var(--glow)}
+.opt{display:block;width:100%;text-align:left;margin-bottom:8px;background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:8px 12px;cursor:pointer;font:inherit;font-size:14px;transition:.2s}.opt:hover{border-color:var(--accent)}.opt.ok{background:#1faa6b;color:#fff;border-color:#1faa6b}.opt.no{background:#d63a5a;color:#fff;border-color:#d63a5a}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<canvas id="rain"></canvas><div id="spot"></div><div id="bar"></div>
+<nav><div class="wrap"><b class="mono">&gt;_ VFS</b><a href="#tentang">Tentang</a><a href="#pengalaman">Pengalaman</a><a href="#skill">Skill</a><a href="#project">Project</a><a href="#lab">Lab</a><a href="#kontak">Kontak</a><span id="pals"></span><button id="theme" aria-label="Ganti tema">◐</button></div></nav>
+<div class="wrap">
+<header>
+<div class="tag mono">root@valerian:~# whoami</div>
+<h1>Valerian<br><span>Filbert Susilo</span></h1>
+<div class="role mono" id="role"></div>
+<div class="btns"><a class="btn" href="#project">Lihat Project</a><a class="btn ghost" href="#kontak">Hubungi Saya</a></div>
+<div class="term mono">
+<div class="term-h"><s></s><s></s><s></s>&nbsp;terminal — coba ketik perintah</div>
+<div id="out"></div>
+<div class="in"><span>$</span><input id="cmd" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal" placeholder="ketik help lalu Enter"></div>
+<div class="hint">Coba: <button data-c="help">help</button><button data-c="about">about</button><button data-c="skills">skills</button><button data-c="scan">scan</button><button data-c="contact">contact</button></div>
+</div>
+</header>
+
+<section id="tentang" class="reveal">
+<h2>01 · Tentang</h2><p class="sub">Mengamankan sistem dengan berpikir seperti penyerang.</p>
+<p style="color:var(--muted);max-width:680px">Saya praktisi cybersecurity dengan minat pada offensive security dan defensive operations. Saya terbiasa menemukan celah sebelum dimanfaatkan penyerang, lalu mengubah temuan teknis menjadi rekomendasi yang jelas bagi developer dan tim bisnis.</p>
+<div class="grid" style="margin-top:22px">
+<div class="card"><div class="stat" data-n="40" data-s="+">0</div><div class="lbl">Kerentanan kritis &amp; tinggi ditemukan</div></div>
+<div class="card"><div class="stat" data-n="15" data-s="+">0</div><div class="lbl">Klien pentest web &amp; API</div></div>
+<div class="card"><div class="stat" data-n="60" data-s="%">0</div><div class="lbl">Penghematan waktu triase alert</div></div>
+<div class="card"><div class="stat" data-n="3" data-s="">0</div><div class="lbl">Sertifikasi keamanan</div></div>
+</div>
+</section>
+
+<section id="pengalaman" class="reveal">
+<h2>02 · Pengalaman</h2><p class="sub">Jejak perjalanan karier.</p>
+<div class="tl">
+<div class="card"><h3>Junior Penetration Tester</h3><div class="meta mono">PT Siber Nusantara Aman · 2024 – Sekarang</div><ul><li>Pentest web &amp; API berbasis OWASP Top 10 untuk 15+ klien.</li><li>Menyusun laporan temuan dengan prioritas risiko dan langkah perbaikan.</li><li>Mendampingi developer saat retest kerentanan.</li></ul></div>
+<div class="card"><h3>SOC Analyst (Intern)</h3><div class="meta mono">Garuda Digital Security · 2023 – 2024</div><ul><li>Memantau dan triase alert SIEM dalam shift 24/7.</li><li>Menulis aturan deteksi brute force dan phishing.</li><li>Mendokumentasikan playbook respons insiden.</li></ul></div>
+</div>
+</section>
+
+<section id="skill" class="reveal">
+<h2>03 · Skill &amp; Tools</h2><p class="sub">Senjata yang saya kuasai.</p>
+<div class="tabs" id="tabs"><button class="tab a" data-f="all">Semua</button><button class="tab" data-f="off">Offensive</button><button class="tab" data-f="def">Defensive</button><button class="tab" data-f="for">Forensik</button><button class="tab" data-f="dev">Dasar</button></div>
+<div class="card" id="sks">
+<div class="sk" data-g="off"><div><span>Burp Suite</span><span class="mono">92%</span></div><div class="trk"><i data-w="92"></i></div></div>
+<div class="sk" data-g="off"><div><span>Metasploit &amp; Nmap</span><span class="mono">88%</span></div><div class="trk"><i data-w="88"></i></div></div>
+<div class="sk" data-g="def"><div><span>Splunk &amp; Wazuh (SIEM)</span><span class="mono">85%</span></div><div class="trk"><i data-w="85"></i></div></div>
+<div class="sk" data-g="def"><div><span>Wireshark &amp; Suricata</span><span class="mono">80%</span></div><div class="trk"><i data-w="80"></i></div></div>
+<div class="sk" data-g="for"><div><span>Autopsy &amp; Volatility</span><span class="mono">75%</span></div><div class="trk"><i data-w="75"></i></div></div>
+<div class="sk" data-g="for"><div><span>Ghidra (reverse engineering)</span><span class="mono">65%</span></div><div class="trk"><i data-w="65"></i></div></div>
+<div class="sk" data-g="dev"><div><span>Python &amp; Bash scripting</span><span class="mono">90%</span></div><div class="trk"><i data-w="90"></i></div></div>
+<div class="sk" data-g="dev"><div><span>Linux &amp; Networking</span><span class="mono">90%</span></div><div class="trk"><i data-w="90"></i></div></div>
+</div>
+</section>
+
+<section id="project" class="reveal">
+<h2>04 · Project &amp; Capaian</h2><p class="sub">Klik kartu untuk melihat detail.</p>
+<div class="grid">
+<div class="card proj"><span class="arr">▸</span><h3>Pentest E-Commerce</h3><div class="meta mono">Web &amp; API Security</div><div class="more">Menemukan celah IDOR dan SQL injection yang berpotensi membocorkan data pelanggan. Seluruh temuan diperbaiki dalam 2 minggu setelah laporan diserahkan.</div><div class="chips"><span class="chip">Burp</span><span class="chip">SQLmap</span><span class="chip">OWASP</span></div></div>
+<div class="card proj"><span class="arr">▸</span><h3>Home-Lab SOC</h3><div class="meta mono">Blue Team</div><div class="more">Membangun lab deteksi ancaman dengan Wazuh dan Suricata, lengkap dengan dashboard serta aturan korelasi kustom untuk simulasi serangan.</div><div class="chips"><span class="chip">Wazuh</span><span class="chip">Suricata</span><span class="chip">ATT&amp;CK</span></div></div>
+<div class="card proj"><span class="arr">▸</span><h3>Phishing Detector</h3><div class="meta mono">Tooling</div><div class="more">Alat Python yang menganalisis URL dan header email, lalu memeriksa reputasi domain secara otomatis untuk memangkas waktu investigasi.</div><div class="chips"><span class="chip">Python</span><span class="chip">VirusTotal</span></div></div>
+<div class="card proj"><span class="arr">▸</span><h3>Juara CTF Nasional</h3><div class="meta mono">Capture The Flag</div><div class="more">Masuk Top 5% peringkat platform CTF nasional pada kategori web exploitation, kriptografi, dan forensik.</div><div class="chips"><span class="chip">CTF</span><span class="chip">Crypto</span><span class="chip">Forensik</span></div></div>
+</div>
+<div class="chips" style="margin-top:18px"><span class="chip">🏅 CompTIA Security+</span><span class="chip">🏅 eJPT</span><span class="chip">🏅 CEH</span></div>
+</section>
+
+<section id="lab" class="reveal">
+<h2>05 · Mini Lab</h2><p class="sub">Coba sendiri — semuanya jalan di browser kamu.</p>
+<div class="grid">
+<div class="card"><h3>🔐 Password Strength Lab</h3><div class="meta mono">Tidak dikirim ke mana pun</div><input id="pw" class="field mono" type="password" placeholder="ketik password uji…" autocomplete="off"><div class="trk" style="margin-top:12px"><i id="pwb"></i></div><div class="mono" id="pwr" style="margin-top:8px;font-size:13px;color:var(--muted)">Menunggu input…</div></div>
+<div class="card"><h3>🧠 Kuis Cyber Cepat</h3><div class="meta mono" id="qn"></div><div id="qq" style="margin-bottom:10px;font-weight:600"></div><div id="qo"></div></div>
+</div></section>
+
+<section id="kontak" class="reveal contact">
+<h2>06 · Kontak</h2><p class="sub">Punya sistem yang perlu diuji? Mari bicara.</p>
+<div class="btns" style="justify-content:center"><a class="btn" href="mailto:valerianfilbertsusilo09@gmail.com">✉ Kirim Email</a><button class="btn ghost" id="copy">Salin alamat email</button></div>
+<p class="mono" style="color:var(--muted);font-size:14px">valerianfilbertsusilo09@gmail.com</p>
+</section>
+<footer class="mono">© 2026 Valerian Filbert Susilo · dibuat dengan ☕ dan banyak log</footer>
+</div>
+<div class="toast" id="toast">Email disalin!</div>
+
+<script>
+var $=function(s){return document.querySelector(s)},$$=function(s){return document.querySelectorAll(s)};
+var EMAIL="valerianfilbertsusilo09@gmail.com";
+// theme
+var th=$("#theme");th.onclick=function(){var d=document.documentElement,cur=d.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");d.setAttribute("data-theme",cur==="dark"?"light":"dark");col()};
+// matrix rain
+var cv=$("#rain"),cx=cv.getContext("2d"),cols,drops,ac="#2ee59d",fs=16,tick=0;
+function col(){ac=getComputedStyle(document.documentElement).getPropertyValue("--accent").trim()||ac}
+function rs(){cv.width=innerWidth;cv.height=innerHeight;cols=Math.floor(cv.width/fs);drops=[];for(var i=0;i<cols;i++)drops[i]=Math.random()*-50}
+rs();addEventListener("resize",rs);col();
+var chars="01アイウエオカキクケコ{}<>/#$%&=+*";
+function rain(){if(!matchMedia("(prefers-reduced-motion:reduce)").matches){cx.globalCompositeOperation="destination-out";cx.fillStyle="rgba(0,0,0,.12)";cx.fillRect(0,0,cv.width,cv.height);cx.globalCompositeOperation="source-over";cx.fillStyle=ac;cx.font=fs+"px monospace";for(var i=0;i<cols;i++){cx.fillText(chars[Math.floor(Math.random()*chars.length)],i*fs,drops[i]*fs);if(drops[i]*fs>cv.height&&Math.random()>.975)drops[i]=0;drops[i]+=.5}}if(++tick%90===0)col();setTimeout(function(){requestAnimationFrame(rain)},45)}
+rain();
+// typing roles
+var roles=["Penetration Tester","SOC Analyst","Security Researcher","CTF Player"],ri=0,ci=0,del=false,rl=$("#role");
+function type(){var w=roles[ri];rl.innerHTML="> "+w.slice(0,ci)+"<i></i>";if(!del&&ci<w.length){ci++;setTimeout(type,90)}else if(!del){del=true;setTimeout(type,1400)}else if(ci>0){ci--;setTimeout(type,45)}else{del=false;ri=(ri+1)%roles.length;setTimeout(type,300)}}
+type();
+// terminal
+var out=$("#out"),cmd=$("#cmd"),hist=[],hi=0;
+function pr(t,c){var d=document.createElement("div");if(c)d.className=c;d.textContent=t;out.appendChild(d);out.scrollTop=out.scrollHeight}
+var C={
+help:function(){pr("Perintah: help, about, skills, projects, contact, scan, color, sudo, clear")},
+about:function(){pr("Valerian Filbert Susilo — Cybersecurity Analyst & Pentester. Fokus: keamanan web, deteksi ancaman, respons insiden.")},
+skills:function(){pr("Offensive : Burp Suite, Metasploit, Nmap, SQLmap\nDefensive : Splunk, Wazuh, Suricata, Wireshark\nForensik  : Autopsy, Volatility, Ghidra\nDasar     : Linux, Python, Bash, Networking")},
+projects:function(){pr("1. Pentest E-Commerce\n2. Home-Lab SOC\n3. Phishing Detector\n4. Juara CTF Nasional")},
+contact:function(){pr("Email: "+EMAIL,"c")},
+sudo:function(){pr("Nice try. Valerian is not in the sudoers file. This incident will be reported 😉","e")},
+clear:function(){out.textContent=""},
+color:function(){cur=(cur+1)%P.length;pal(cur);pr("Palet warna #"+(cur+1)+" aktif","c")},
+scan:function(){var s=["[*] Memulai pemindaian target: portofolio.local","[*] Port 22 ... tertutup","[*] Port 80 ... terbuka (HTTPS redirect)","[*] Port 443 ... terbuka (TLS 1.3)","[+] Header keamanan: CSP, HSTS, X-Frame-Options OK","[+] Tidak ada kerentanan ditemukan. Sistem aman ✔"],i=0;(function n(){if(i<s.length){pr(s[i],s[i][1]==="+"?"c":"");i++;setTimeout(n,450)}})()}
+};
+pr("Selamat datang. Ketik 'help' untuk daftar perintah.","c");
+function run(v){v=v.trim().toLowerCase();if(!v)return;pr("$ "+v);hist.push(v);hi=hist.length;if(C.hasOwnProperty(v))C[v]();else pr("command not found: "+v+" (coba 'help')","e")}
+cmd.addEventListener("keydown",function(e){if(e.key==="Enter"){run(cmd.value);cmd.value=""}else if(e.key==="ArrowUp"&&hi>0){cmd.value=hist[--hi]||""}else if(e.key==="ArrowDown"){cmd.value=hist[++hi]||"";}});
+$$(".hint button").forEach(function(b){b.onclick=function(){run(b.dataset.c)}});
+// reveal + counters + skill bars
+function counter(el){var n=+el.dataset.n,s=el.dataset.s,t0=null;(function f(t){if(!t0)t0=t;var p=Math.min((t-t0)/1400,1);el.textContent=Math.round(n*p)+s;if(p<1)requestAnimationFrame(f)})(performance.now())}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("on");e.target.querySelectorAll(".stat").forEach(counter);e.target.querySelectorAll(".trk i").forEach(function(i){i.style.width=i.dataset.w+"%"});io.unobserve(e.target)}})},{threshold:.15});
+$$(".reveal").forEach(function(s){io.observe(s)});
+// skill tabs
+$$(".tab").forEach(function(t){t.onclick=function(){$$(".tab").forEach(function(x){x.classList.remove("a")});t.classList.add("a");$$(".sk").forEach(function(s){s.classList.toggle("hide",t.dataset.f!=="all"&&s.dataset.g!==t.dataset.f)})}});
+// projects
+$$(".proj").forEach(function(p){p.onclick=function(){p.classList.toggle("open")}});
+// copy
+$("#copy").onclick=function(){function ok(){var t=$("#toast");t.classList.add("on");setTimeout(function(){t.classList.remove("on")},1800)}try{navigator.clipboard.writeText(EMAIL).then(ok,function(){location.href="mailto:"+EMAIL})}catch(e){location.href="mailto:"+EMAIL}};
+// palet warna
+var P=[["#2ee59d","#ff4d8d"],["#00d4ff","#7c5cff"],["#b36bff","#ff5fa2"],["#ffb020","#ff5a36"],["#ff3d6e","#ffd23f"]],cur=0,pw0=$("#pals");
+function pal(i){var r=document.documentElement.style;r.setProperty("--accent",P[i][0]);r.setProperty("--accent2",P[i][1]);r.setProperty("--glow",P[i][0]+"40");col();$$(".dot").forEach(function(d,j){d.classList.toggle("a",j===i)})}
+P.forEach(function(p,i){var b=document.createElement("button");b.className="dot"+(i===0?" a":"");b.setAttribute("aria-label","Palet warna "+(i+1));b.style.background="linear-gradient(135deg,"+p[0]+","+p[1]+")";b.onclick=function(){cur=i;pal(i)};pw0.appendChild(b)});
+// spotlight + tilt + sparks
+var sp=$("#spot");addEventListener("mousemove",function(e){sp.style.transform="translate("+e.clientX+"px,"+e.clientY+"px)"});
+$$(".grid .card,.tl .card").forEach(function(c){c.addEventListener("mousemove",function(e){var r=c.getBoundingClientRect();c.style.setProperty("--ry",((e.clientX-r.left)/r.width-.5)*10+"deg");c.style.setProperty("--rx",-((e.clientY-r.top)/r.height-.5)*10+"deg")});c.addEventListener("mouseleave",function(){c.style.setProperty("--rx","0deg");c.style.setProperty("--ry","0deg")})});
+addEventListener("click",function(e){for(var i=0;i<10;i++){(function(){var d=document.createElement("b"),a=Math.random()*6.28,s=30+Math.random()*50;d.className="sp";d.style.left=e.clientX+"px";d.style.top=e.clientY+"px";document.body.appendChild(d);var an=d.animate([{transform:"translate(0,0)",opacity:1},{transform:"translate("+Math.cos(a)*s+"px,"+Math.sin(a)*s+"px)",opacity:0}],{duration:600});an.onfinish=function(){d.remove()}})()}});
+// password lab
+$("#pw").addEventListener("input",function(){var v=this.value,pool=0,b=$("#pwb"),r=$("#pwr");if(!v){b.style.width="0";r.textContent="Menunggu input…";return}if(/[a-z]/.test(v))pool+=26;if(/[A-Z]/.test(v))pool+=26;if(/\d/.test(v))pool+=10;if(/[^a-zA-Z0-9]/.test(v))pool+=32;var bits=v.length*Math.log2(pool),common=/password|123456|qwerty|admin|111111|iloveyou/i.test(v);if(common)bits=Math.min(bits,20);var s=Math.pow(2,bits)/1e10,t=s<1?"instan":s<60?Math.round(s)+" detik":s<3600?Math.round(s/60)+" menit":s<86400?Math.round(s/3600)+" jam":s<3.15e7?Math.round(s/86400)+" hari":s<3.15e9?Math.round(s/3.15e7)+" tahun":"ratusan tahun lebih";var lv=bits<40?"LEMAH":bits<60?"SEDANG":bits<80?"KUAT":"SANGAT KUAT";b.style.width=Math.min(bits/80,1)*100+"%";b.style.background=bits<40?"#ff4d5e":bits<60?"#f5b700":"#2ee59d";r.textContent=lv+" · estimasi bobol: "+t+(common?" · terdeteksi pola umum!":"")});
+// kuis
+var Q=[["Serangan yang menyisipkan perintah SQL lewat input disebut?",["XSS","SQL Injection","DDoS"],1],["Port default HTTPS adalah?",["443","80","22"],0],["MFA singkatan dari?",["Multi-Factor Authentication","Managed Firewall Access","Malware File Analysis"],0],["Email palsu untuk memancing data korban disebut?",["Sniffing","Phishing","Patching"],1]],qi=0,qs=0;
+function quiz(){var qn=$("#qn"),qq=$("#qq"),qo=$("#qo");qo.textContent="";if(qi>=Q.length){qn.textContent="Selesai";qq.textContent="Skor kamu: "+qs+"/"+Q.length+(qs===Q.length?" — mantap, calon hacker etis! 🎉":" — coba lagi!");var rb=document.createElement("button");rb.className="opt";rb.textContent="↻ Ulangi";rb.onclick=function(){qi=0;qs=0;quiz()};qo.appendChild(rb);return}qn.textContent="Soal "+(qi+1)+" dari "+Q.length;qq.textContent=Q[qi][0];Q[qi][1].forEach(function(o,i){var b=document.createElement("button");b.className="opt";b.textContent=o;b.onclick=function(){var ok=i===Q[qi][2];if(ok)qs++;b.classList.add(ok?"ok":"no");qo.querySelectorAll(".opt").forEach(function(x){x.disabled=true});setTimeout(function(){qi++;quiz()},900)};qo.appendChild(b)})}
+quiz();
+// scroll progress
+addEventListener("scroll",function(){var h=document.documentElement;$("#bar").style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%"},{passive:true});
+</script>
+</body>
+</html>
